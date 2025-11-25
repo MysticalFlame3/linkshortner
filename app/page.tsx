@@ -316,7 +316,7 @@ export default function HomePage() {
                 <input
                   type="url"
                   value={targetUrl}
-                  onChange={(e) => setTargetUrl(e.target.value)}
+                  onChange={(e) => setTargetUrl(e.targetValue ?? e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       handleCreateLink();
@@ -569,7 +569,8 @@ export default function HomePage() {
           <div className="w-full max-w-sm rounded-xl sm:rounded-2xl bg-white p-5 sm:p-6 shadow-2xl">
             <p className="mb-4 text-xs sm:text-sm text-slate-800">
               Are you sure you want to delete short code{' '}
-              <span className="font-mono font-semibold break-all">
+              {/* Prevent splitting on desktop: allow wrap on very small screens but keep single-line on sm+ */}
+              <span className="font-mono font-semibold break-words sm:whitespace-nowrap">
                 {pendingDeleteCode}
               </span>
               ?
