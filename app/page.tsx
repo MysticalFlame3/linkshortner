@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, FormEvent, useMemo } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 
 type LinkType = {
   code: string;
@@ -33,6 +33,10 @@ export default function HomePage() {
     null,
   );
 
+  // refs for timers so we can clear on unmount / reset
+  const formSuccessTimer = useRef<number | null>(null);
+  const formErrorTimer = useRef<number | null>(null);
+
   function showToast(message: string) {
     setToast(message);
     setTimeout(() => {
@@ -58,6 +62,58 @@ export default function HomePage() {
     }
 
     fetchLinks();
+  }, []);
+
+  // Auto-clear success messages after 3s
+  useEffect(() => {
+    if (formSuccess) {
+      if (formSuccessTimer.current) {
+        clearTimeout(formSuccessTimer.current);
+      }
+      formSuccessTimer.current = window.setTimeout(() => {
+        setFormSuccess(null);
+        formSuccessTimer.current = null;
+      }, 3000);
+    }
+    return () => {
+      if (formSuccessTimer.current) {
+        clearTimeout(formSuccessTimer.current);
+        formSuccessTimer.current = null;
+      }
+    };
+  }, [formSuccess]);
+
+  // Auto-clear error messages after 3s
+  useEffect(() => {
+    if (formError) {
+      if (formErrorTimer.current) {
+        clearTimeout(formErrorTimer.current);
+      }
+      formErrorTimer.current = window.setTimeout(() => {
+        setFormError(null);
+        formErrorTimer.current = null;
+      }, 3000);
+    }
+    return () => {
+      if (formErrorTimer.current) {
+        clearTimeout(formErrorTimer.current);
+        formErrorTimer.current = null;
+      }
+    };
+  }, [formError]);
+
+  // cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (formSuccessTimer.current) {
+        clearTimeout(formSuccessTimer.current);
+        formSuccessTimer.current = null;
+      }
+      if (formErrorTimer.current) {
+        clearTimeout(formErrorTimer.current);
+        formErrorTimer.current = null;
+      }
+    };
   }, []);
 
   function isValidUrl(url: string) {
@@ -375,7 +431,7 @@ export default function HomePage() {
                             </div>
                           </div>
                         </div>
-                        
+
                         <div className="grid grid-cols-2 gap-3 mb-3 text-xs">
                           <div>
                             <span className="text-slate-500">Clicks:</span>
@@ -391,7 +447,7 @@ export default function HomePage() {
                                     month: 'short',
                                     day: 'numeric',
                                     hour: '2-digit',
-                                    minute: '2-digit'
+                                    minute: '2-digit',
                                   })
                                 : 'Never'}
                             </div>
