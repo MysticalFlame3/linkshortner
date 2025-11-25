@@ -114,7 +114,7 @@ export default function CodeStatsPage(props: PageProps) {
               onClick={handleBackToDashboard}
               className="self-start sm:self-auto rounded-full border border-slate-300 bg-white px-4 py-2 text-xs sm:text-sm font-medium text-slate-800 shadow-sm hover:border-slate-900 whitespace-nowrap"
             >
-              ← Back to dashboard
+              ← Back to Dashboard
             </button>
           </div>
         </header>

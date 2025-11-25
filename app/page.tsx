@@ -316,7 +316,7 @@ export default function HomePage() {
                 <input
                   type="url"
                   value={targetUrl}
-                  onChange={(e) => setTargetUrl(e.targetValue ?? e.target.value)}
+                  onChange={(e) => setTargetUrl(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       handleCreateLink();
@@ -338,7 +338,7 @@ export default function HomePage() {
                   <input
                     type="text"
                     value={customCode}
-                    onChange={(e) => setCustomCode(e.targetValue ?? e.target.value)}
+                    onChange={(e) => setCustomCode(e.target.value)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         handleCreateLink();
