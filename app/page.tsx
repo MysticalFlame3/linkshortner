@@ -194,7 +194,8 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-slate-100 text-slate-900 text-[15px] sm:text-[16px]">
-      <div className="mx-auto flex min-h-screen w-full max-w-5xl flex-col px-3 sm:px-4 py-5 sm:py-8 lg:py-10">
+      {/* 🔹 CHANGED: full-width container on mobile, no max-w / mx-auto */}
+      <div className="flex min-h-screen w-full flex-col px-3 sm:px-4 py-5 sm:py-8 lg:py-10">
         {/* Top bar */}
         <header className="mb-5 flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white/90 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-5 shadow-md backdrop-blur">
           <div className="flex items-center gap-3">

@@ -87,16 +87,17 @@ export default function CodeStatsPage(props: PageProps) {
 
   return (
     <main className="min-h-screen bg-slate-100 text-slate-900 text-[15px] sm:text-[16px]">
-      <div className="mx-auto flex min-h-screen max-w-4xl flex-col px-4 py-6 sm:py-8 lg:py-10">
+      {/* full-width container on mobile, like dashboard */}
+      <div className="flex min-h-screen w-full flex-col px-3 sm:px-4 py-5 sm:py-8 lg:py-10">
         {/* Top bar */}
-        <header className="mb-6 flex items-center justify-between rounded-2xl border border-slate-200 bg-white/90 px-6 py-5 shadow-md backdrop-blur">
+        <header className="mb-6 flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white/90 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-5 shadow-md backdrop-blur">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900 text-lg font-semibold text-white shadow-sm">
               TL
             </div>
             <div>
               <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                Link stats
+                Link Stats
               </h1>
               <p className="text-sm text-slate-500">
                 Detailed metrics for your short link.
@@ -132,8 +133,8 @@ export default function CodeStatsPage(props: PageProps) {
         {!loading && !error && !notFound && stats && (
           <section className="space-y-6">
             {/* Main link details */}
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-md">
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md">
+              <h2 className="mb-3 text-lg sm:text-xl font-semibold text-slate-900">
                 Short link details
               </h2>
               <div className="space-y-3 text-sm text-slate-700">
