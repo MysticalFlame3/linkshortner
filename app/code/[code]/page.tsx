@@ -21,7 +21,6 @@ export default function CodeStatsPage(props: PageProps) {
   const [error, setError] = useState<string | null>(null);
   const [code, setCode] = useState<string | null>(null);
 
-  // toast state
   const [toast, setToast] = useState<string | null>(null);
 
   function showToast(message: string) {
@@ -93,7 +92,6 @@ export default function CodeStatsPage(props: PageProps) {
   return (
     <main className="min-h-screen bg-slate-100 text-slate-900">
       <div className="flex min-h-screen w-full flex-col px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
-        {/* Top bar */}
         <header className="mb-4 sm:mb-5 lg:mb-6 flex flex-col gap-3 sm:gap-4 rounded-xl sm:rounded-2xl border border-slate-200 bg-white/90 px-4 sm:px-6 py-4 sm:py-5 shadow-md backdrop-blur">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
             <div className="flex items-center gap-3">
@@ -139,7 +137,6 @@ export default function CodeStatsPage(props: PageProps) {
 
         {!loading && !error && !notFound && stats && (
           <section className="space-y-4 sm:space-y-5 lg:space-y-6">
-            {/* Main link details */}
             <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 lg:p-6 shadow-md">
               <h2 className="mb-3 sm:mb-4 text-base sm:text-lg lg:text-xl font-semibold text-slate-900">
                 Short link details
@@ -195,7 +192,6 @@ export default function CodeStatsPage(props: PageProps) {
               </div>
             </div>
 
-            {/* Stats cards */}
             <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-3">
               <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm">
                 <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -230,7 +226,6 @@ export default function CodeStatsPage(props: PageProps) {
         )}
       </div>
 
-      {/* Toast */}
       {toast && (
         <div className="fixed bottom-4 sm:bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full border border-slate-300 bg-white px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-slate-800 shadow-xl max-w-[90vw]">
           {toast}

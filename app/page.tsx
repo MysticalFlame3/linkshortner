@@ -15,25 +15,20 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // form state
   const [targetUrl, setTargetUrl] = useState('');
   const [customCode, setCustomCode] = useState('');
   const [formError, setFormError] = useState<string | null>(null);
   const [formSuccess, setFormSuccess] = useState<string | null>(null);
   const [formLoading, setFormLoading] = useState(false);
 
-  // search/filter state
   const [search, setSearch] = useState('');
 
-  // toast state
   const [toast, setToast] = useState<string | null>(null);
 
-  // delete confirmation state
   const [pendingDeleteCode, setPendingDeleteCode] = useState<string | null>(
     null,
   );
 
-  // refs for timers so we can clear on unmount / reset
   const formSuccessTimer = useRef<number | null>(null);
   const formErrorTimer = useRef<number | null>(null);
 
@@ -64,7 +59,6 @@ export default function HomePage() {
     fetchLinks();
   }, []);
 
-  // Auto-clear success messages after 3s
   useEffect(() => {
     if (formSuccess) {
       if (formSuccessTimer.current) {
@@ -83,7 +77,6 @@ export default function HomePage() {
     };
   }, [formSuccess]);
 
-  // Auto-clear error messages after 3s
   useEffect(() => {
     if (formError) {
       if (formErrorTimer.current) {
@@ -102,7 +95,6 @@ export default function HomePage() {
     };
   }, [formError]);
 
-  // cleanup on unmount
   useEffect(() => {
     return () => {
       if (formSuccessTimer.current) {
@@ -233,7 +225,6 @@ export default function HomePage() {
   }
 
   function handleStats(code: string) {
-    // Navigate to stats page
     if (typeof window !== 'undefined') {
       window.location.href = `/code/${code}`;
     }
@@ -252,7 +243,6 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-100 text-slate-900">
       <div className="mx-auto flex min-h-screen w-full flex-col px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
-        {/* Top bar */}
         <header className="mb-4 sm:mb-5 lg:mb-6 flex flex-col gap-3 sm:gap-4 rounded-xl sm:rounded-2xl border border-slate-200 bg-white/90 px-4 sm:px-6 py-4 sm:py-5 shadow-md backdrop-blur">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-lg sm:rounded-xl bg-slate-900 text-base sm:text-lg font-semibold text-white shadow-sm flex-shrink-0">
@@ -269,7 +259,6 @@ export default function HomePage() {
           </div>
         </header>
 
-        {/* Overview cards */}
         <section className="mb-4 sm:mb-5 lg:mb-6 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -297,9 +286,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Main area: form + table */}
         <div className="grid flex-1 gap-4 sm:gap-5 lg:grid-cols-[minmax(280px,340px),minmax(0,1fr)]">
-          {/* Create link card */}
           <section className="h-max rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 lg:p-6 shadow-md">
             <h2 className="mb-2 text-base sm:text-lg lg:text-xl font-semibold text-slate-900">
               Create short link
@@ -373,7 +360,6 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* Links table card */}
           <section className="flex flex-col rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 lg:p-5 shadow-md">
             {loading && (
               <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-xs sm:text-sm text-slate-600">
@@ -395,7 +381,6 @@ export default function HomePage() {
 
             {!loading && !error && links.length > 0 && (
               <>
-                {/* Search bar */}
                 <div className="mb-3 sm:mb-4 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
                   <h2 className="text-xs sm:text-sm font-semibold text-slate-700">
                     All links
@@ -409,7 +394,6 @@ export default function HomePage() {
                   />
                 </div>
 
-                {/* Mobile card view */}
                 <div className="block lg:hidden space-y-3">
                   {filteredLinks.length === 0 ? (
                     <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-center text-xs sm:text-sm text-slate-500">
@@ -482,7 +466,6 @@ export default function HomePage() {
                   )}
                 </div>
 
-                {/* Desktop table view */}
                 <div className="hidden lg:block flex-1 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-sm">
                     <thead className="bg-slate-50">
@@ -563,13 +546,11 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Delete confirmation overlay */}
       {pendingDeleteCode && (
         <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
           <div className="w-full max-w-sm rounded-xl sm:rounded-2xl bg-white p-5 sm:p-6 shadow-2xl">
             <p className="mb-4 text-xs sm:text-sm text-slate-800">
               Are you sure you want to delete short code{' '}
-              {/* Prevent splitting on desktop: allow wrap on very small screens but keep single-line on sm+ */}
               <span className="font-mono font-semibold break-words sm:whitespace-nowrap">
                 {pendingDeleteCode}
               </span>
@@ -595,7 +576,6 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Toast */}
       {toast && (
         <div className="fixed bottom-4 sm:bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full border border-slate-300 bg-white px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-slate-800 shadow-xl max-w-[90vw]">
           {toast}

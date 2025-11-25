@@ -1,4 +1,3 @@
-// app/[code]/route.ts
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
@@ -17,20 +16,17 @@ export async function GET(req: Request, context: RouteContext) {
       );
     }
 
-    // Find link by code
     const link = await prisma.link.findUnique({
       where: { code },
     });
 
     if (!link) {
-      // After delete or invalid code → 404
       return NextResponse.json(
         { error: 'Link not found' },
         { status: 404 },
       );
     }
 
-    // Update stats: increment totalClicks + set lastClickedAt
     await prisma.link.update({
       where: { code },
       data: {
@@ -39,7 +35,6 @@ export async function GET(req: Request, context: RouteContext) {
       },
     });
 
-    // 302 redirect to targetUrl
     return NextResponse.redirect(link.targetUrl, { status: 302 });
   } catch (err) {
     console.error('GET /[code] redirect error', err);

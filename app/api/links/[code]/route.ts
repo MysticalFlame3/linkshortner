@@ -1,4 +1,3 @@
-// app/api/links/[code]/route.ts
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
@@ -6,7 +5,6 @@ type RouteContext = {
   params: Promise<{ code: string }>;
 };
 
-// GET /api/links/:code -> Stats for one code
 export async function GET(req: Request, context: RouteContext) {
   try {
     const { code } = await context.params;
@@ -48,7 +46,6 @@ export async function GET(req: Request, context: RouteContext) {
   }
 }
 
-// DELETE /api/links/:code
 export async function DELETE(req: Request, context: RouteContext) {
   try {
     const { code } = await context.params;
