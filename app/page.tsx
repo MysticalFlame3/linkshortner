@@ -194,15 +194,15 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-slate-100 text-slate-900 text-[15px] sm:text-[16px]">
-      <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-6 sm:py-8 lg:py-10">
+      <div className="mx-auto flex min-h-screen w-full max-w-5xl flex-col px-3 sm:px-4 py-5 sm:py-8 lg:py-10">
         {/* Top bar */}
-        <header className="mb-6 flex items-center justify-between rounded-2xl border border-slate-200 bg-white/90 px-6 py-5 shadow-md backdrop-blur">
+        <header className="mb-5 flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white/90 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-5 shadow-md backdrop-blur">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900 text-lg font-semibold text-white shadow-sm">
               TL
             </div>
             <div>
-              <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              <h1 className="text-xl font-semibold tracking-tight sm:text-2xl lg:text-3xl">
                 TinyLink Dashboard
               </h1>
               <p className="text-sm text-slate-500">
@@ -213,28 +213,28 @@ export default function HomePage() {
         </header>
 
         {/* Overview cards */}
-        <section className="mb-6 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <section className="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
               Total links
             </p>
-            <p className="mt-2 text-3xl font-semibold text-slate-900">
+            <p className="mt-2 text-2xl sm:text-3xl font-semibold text-slate-900">
               {links.length}
             </p>
           </div>
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
               Total clicks
             </p>
-            <p className="mt-2 text-3xl font-semibold text-slate-900">
+            <p className="mt-2 text-2xl sm:text-3xl font-semibold text-slate-900">
               {totalClicks}
             </p>
           </div>
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
               Status
             </p>
-            <p className="mt-2 text-base text-slate-700 leading-relaxed">
+            <p className="mt-2 text-sm sm:text-base text-slate-700 leading-relaxed">
               Links are stored in Postgres and redirects are tracked on every
               hit.
             </p>
@@ -244,8 +244,8 @@ export default function HomePage() {
         {/* Main area: form + table */}
         <div className="grid flex-1 gap-5 lg:grid-cols-[340px,minmax(0,1fr)]">
           {/* Create link card */}
-          <section className="h-max rounded-2xl border border-slate-200 bg-white p-6 shadow-md">
-            <h2 className="mb-2 text-xl font-semibold text-slate-900">
+          <section className="h-max rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 shadow-md">
+            <h2 className="mb-2 text-lg sm:text-xl font-semibold text-slate-900">
               Create short link
             </h2>
             <p className="mb-4 text-sm text-slate-500">
@@ -308,7 +308,7 @@ export default function HomePage() {
           </section>
 
           {/* Links table card */}
-          <section className="flex flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-md sm:p-5">
+          <section className="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 sm:p-5 shadow-md">
             {loading && (
               <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
                 Loading links…
@@ -340,19 +340,19 @@ export default function HomePage() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Filter by short code or URL…"
-                    className="w-full max-w-xs rounded-full border border-slate-300 bg-slate-50 px-4 py-2 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/40"
+                    className="w-full sm:max-w-xs rounded-full border border-slate-300 bg-slate-50 px-4 py-2 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/40"
                   />
                 </div>
 
                 <div className="flex-1 overflow-x-auto rounded-2xl border border-slate-200">
                   <table className="min-w-full text-sm">
                     <thead className="bg-slate-50">
-                      <tr className="text-left text-sm font-semibold uppercase tracking-wide text-slate-600">
-                        <th className="px-4 py-3">Short code</th>
-                        <th className="px-4 py-3">Target URL</th>
-                        <th className="px-4 py-3">Clicks</th>
-                        <th className="px-4 py-3">Last clicked</th>
-                        <th className="px-4 py-3">Actions</th>
+                      <tr className="text-left text-xs sm:text-sm font-semibold uppercase tracking-wide text-slate-600">
+                        <th className="px-3 sm:px-4 py-3">Short code</th>
+                        <th className="px-3 sm:px-4 py-3">Target URL</th>
+                        <th className="px-3 sm:px-4 py-3">Clicks</th>
+                        <th className="px-3 sm:px-4 py-3">Last clicked</th>
+                        <th className="px-3 sm:px-4 py-3">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -371,8 +371,8 @@ export default function HomePage() {
                             key={link.code}
                             className="border-t border-slate-100 hover:bg-slate-50/60"
                           >
-                            {/* SHORT CODE – NOW COMPLETELY NORMAL (NOT BOLD, NOT MONO) */}
-                            <td className="px-4 py-3 text-base font-normal text-slate-900">
+                            {/* SHORT CODE – normal weight, mobile-friendly */}
+                            <td className="px-3 sm:px-4 py-3 text-base font-normal text-slate-900">
                               <Link
                                 href={`/code/${link.code}`}
                                 className="underline-offset-2 hover:underline font-normal"
@@ -380,22 +380,22 @@ export default function HomePage() {
                                 {link.code}
                               </Link>
                             </td>
-                            <td className="max-w-xs px-4 py-3">
+                            <td className="max-w-xs px-3 sm:px-4 py-3">
                               <div className="truncate text-sm text-slate-700">
                                 {link.targetUrl}
                               </div>
                             </td>
-                            <td className="px-4 py-3 text-sm font-medium text-slate-800">
+                            <td className="px-3 sm:px-4 py-3 text-sm font-medium text-slate-800">
                               {link.totalClicks}
                             </td>
-                            <td className="px-4 py-3 text-sm text-slate-500">
+                            <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-slate-500">
                               {link.lastClickedAt
                                 ? new Date(
                                     link.lastClickedAt,
                                   ).toLocaleString()
                                 : 'Never'}
                             </td>
-                            <td className="px-4 py-3 text-sm text-slate-700">
+                            <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-slate-700">
                               <span className="inline-flex flex-wrap gap-2">
                                 <Link
                                   href={`/code/${link.code}`}
